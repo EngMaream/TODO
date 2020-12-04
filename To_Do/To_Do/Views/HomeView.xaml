@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="{Binding Title}"
+             x:Class="To_Do.Views.HomeView">
+    <ContentPage.Content>
+        
+     
+         <ListView
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            <ListView.Header>
+                <Grid Padding="8" ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="48" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Entry Placeholder="your todo here ..." Text="{Binding Text}"
+                           Grid.Column="0" Grid.ColumnSpan="4"
+                           FontSize="Small"/>
+                    
+                    <Button
+                            Grid.Column="7"
+                            Command="{Binding AddItemCommand}"
+                            Text="+" />
+
+                    <TimePicker FontSize="Small"
+                        Grid.Column="4" Grid.ColumnSpan="3"
+                                Time="{Binding DataTime}"/>
+                    
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="8" ColumnSpacing="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label
+                            FontSize="Medium"
+                            Text="{Binding Text}"
+                            TextColor="Teal"
+                                Grid.Column="0" Grid.ColumnSpan="4"/>
+
+                            <Label
+                            FontSize="Small"
+                            Text="{Binding TextDataTime}"
+                            TextColor="Teal" 
+                                Grid.Column="4" Grid.ColumnSpan="3"/>
+
+                            <Switch Grid.Column="7" IsToggled="{Binding IsDone}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+    
+</ContentPage>
